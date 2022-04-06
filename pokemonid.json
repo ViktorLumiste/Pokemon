@@ -1,4 +1,5 @@
-{
+[
+    {
     "name": "bulbasaur",
     "url": "https://pokeapi.co/api/v2/pokemon/1/"
 },
@@ -4501,4 +4502,4 @@
 {
     "name": "toxtricity-low-key-gmax",
     "url": "https://pokeapi.co/api/v2/pokemon/10228/"
-}, 
+}]
