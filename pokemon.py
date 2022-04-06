@@ -1,7 +1,8 @@
 import json
 import requests
 class Pokemon():
-     input_name = input("Sisestage pokemoni nimi: ").lower()
+     def __init__(self, name):
+          self.input_name = name
      with open('pokemonid.json') as json_file:
           data = json.load(json_file)
           i = 0
@@ -39,7 +40,8 @@ class Pokemon():
      def getMultiplier(self,poke1, poke2):
           for typ in self.poke1.response_dict1:
                for a in typ:
-                    if a["name"] == poke2.types1
+                    if a["name"] == poke2.types1:
+                         pass
 poke1 = Pokemon()
 poke1.getTypes(poke1.types1, poke1.types2)
 
