@@ -5,7 +5,7 @@ class Pokemon():
           self.input_name = name
      with open('pokemonid.json') as json_file:
           data = json.load(json_file)
-          i = 0
+     i = 0
      for poke in data:
           if input_name == data[i]["name"]:
                pokeurl = (data[i]["url"])
