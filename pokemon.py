@@ -3,46 +3,122 @@ import requests
 class Pokemon():
      def __init__(self, name):
           self.input_name = name
-     with open('pokemonid.json') as json_file:
-          data = json.load(json_file)
-     i = 0
-     for poke in data:
-          if input_name == data[i]["name"]:
-               pokeurl = (data[i]["url"])
-               i += 1
+          with open('pokemonid.json') as json_file:
+               data = json.load(json_file)
+          i = 0
+          for poke in data:
+               if self.input_name == data[i]["name"]:
+                    pokeurl = (data[i]["url"])
+                    i += 1
+               else:
+                    i += 1
+          self.response = requests.get(pokeurl)
+          self.response_dict = self.response.json()
+          self.failname = self.input_name + ".json"
+          self.andmed = requests.get(pokeurl).json()
+          with open(self.failname, 'w') as json_file:
+               json.dump(self.andmed, json_file)
+          self.tyybid = self.andmed["types"]
+          if len(self.tyybid) > 1:
+               self.types1 = self.tyybid[0]["type"]
+               self.types2 = self.tyybid[1]["type"]
           else:
-               i += 1
-     response = requests.get(pokeurl)
-     response_dict = response.json()
-     failname = input_name + ".json"
-     andmed = requests.get(pokeurl).json()
-     with open(failname, 'w') as json_file:
-          json.dump(andmed, json_file)
-     tyybid = andmed["types"]
-     if len(tyybid) > 1:
-          types1 = tyybid[0]["type"]
-          types2 = tyybid[1]["type"]
-     else:
-          types1 = tyybid[0]["type"]
-          types2 = ""
-     def getTypes(self, tyyp1, tyyp2):
-          if tyyp2 != "":
+               self.types1 = self.tyybid[0]["type"]
+               self.types2 = ""
+          if self.types2 != "":
                response1 = requests.get(self.types1["url"])
-               response_dict1 = response1.json()
+               self.response_dict1 = response1.json()
                response2 = requests.get(self.types2["url"])
-               response_dict2 = response2.json()
-               print(response_dict1["damage_relations"])
-               print(response_dict2["damage_relations"])
+               self.response_dict2 = response2.json()
           else:
                 response1 = requests.get(self.types1["url"])
-                response_dict1 = response1.json()
-                print(response_dict1["damage_relations"])
-     def getMultiplier(self,poke1, poke2):
-          for typ in self.poke1.response_dict1:
-               for a in typ:
-                    if a["name"] == poke2.types1:
-                         pass
-poke1 = Pokemon()
-poke1.getTypes(poke1.types1, poke1.types2)
+                self.response_dict1 = response1.json()
+     def getMultiplier(self, poke2):
+          self.take_dam = 1
+          self.take_dam1 = 1
+          self.take_dam2 = 1
+          self.deal_dam = 1
+          self.deal_dam1 = 1
+          self.deal_dam2 = 1
+          #while self.take_dam == 0 or self.do_dam == 0:
+          self.double_damage_from = self.response_dict1["damage_relations"]["double_damage_from"]
+          self.double_damage_to = self.response_dict1["damage_relations"]["double_damage_to"]
+          self.half_damage_from = self.response_dict1["damage_relations"]["half_damage_from"]
+          self.half_damage_to = self.response_dict1["damage_relations"]["half_damage_to"]
+          self.no_damage_from = self.response_dict1["damage_relations"]["no_damage_from"]
+          self.no_damage_to = self.response_dict1["damage_relations"]["no_damage_to"]
+          for i in range(len(self.double_damage_from)):
+               if self.double_damage_from[i]["name"] == poke2.types1["name"]:
+                    self.take_dam1 = 2
 
-#print(poke1.data[0]['url'])
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.double_damage_from)):
+                    if self.double_damage_from[i]["name"] == poke2.types2["name"]:
+                         self.take_dam2 = 2
+
+          for i in range(len(self.double_damage_to)):
+               if self.double_damage_to[i]["name"] == poke2.types1["name"]:
+                    self.deal_dam1 = 2
+
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.double_damage_to)):
+                    if self.double_damage_to[i]["name"] == poke2.types2["name"]:
+                         self.deal_dam2 = 2
+
+          for i in range(len(self.half_damage_from)):
+               if self.half_damage_from[i]["name"] == poke2.types1["name"]:
+                    self.take_dam1 = 0.5
+
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.half_damage_from)):
+                    if self.half_damage_from[i]["name"] == poke2.types2["name"]:
+                         self.take_dam2 = 0.5
+
+          for i in range(len(self.half_damage_to)):
+               if self.half_damage_to[i]["name"] == poke2.types1["name"]:
+                    self.deal_dam1 = 0.5
+
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.half_damage_to)):
+                    if self.half_damage_to[i]["name"] == poke2.types2["name"]:
+                         self.deal_dam2 = 0.5
+
+          for i in range(len(self.no_damage_from)):
+               if self.no_damage_from[i]["name"] == poke2.types1["name"]:
+                    self.take_dam1 = 0
+
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.no_damage_from)):
+                    if self.no_damage_from[i]["name"] == poke2.types2["name"]:
+                         self.take_dam2 = 0
+
+          for i in range(len(self.no_damage_to)):
+               if self.no_damage_to[i]["name"] == poke2.types1["name"]:
+                    self.deal_dam1 = 0
+
+          if self.types2 != "" or poke2.types2 != "":
+               for i in range(len(self.no_damage_to)):
+                    if self.no_damage_to[i]["name"] == poke2.types2["name"]:
+                         self.deal_dam2 = 0
+
+          self.deal_dam = max(self.deal_dam1, self.deal_dam2)
+          self.take_dam = max(self.take_dam1, self.take_dam2)
+
+
+poke2 = Pokemon("mewtwo")
+poke1 = Pokemon("bulbasaur")
+print(poke1.getMultiplier(poke2))
+print(poke1.take_dam1)
+print(poke1.take_dam2)
+print(poke1.deal_dam1)
+print(poke1.deal_dam2)
+print(poke1.types1)
+#print(poke1.response_dict1["damage_relations"])
+
+#print(poke1.andmed)
+#double_damage_from
+#double_damage_to
+#half_damage_from
+#half_damage_to
+#no_damage_from
+#no_damage_to
