@@ -40,7 +40,6 @@ class Pokemon():
           self.deal_dam = 1
           self.deal_dam1 = 1
           self.deal_dam2 = 1
-          #while self.take_dam == 0 or self.do_dam == 0:
           self.double_damage_from = self.response_dict1["damage_relations"]["double_damage_from"]
           self.double_damage_to = self.response_dict1["damage_relations"]["double_damage_to"]
           self.half_damage_from = self.response_dict1["damage_relations"]["half_damage_from"]
@@ -51,7 +50,7 @@ class Pokemon():
                if self.double_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 2
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.double_damage_from)):
                     if self.double_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 2
@@ -60,7 +59,7 @@ class Pokemon():
                if self.double_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 2
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.double_damage_to)):
                     if self.double_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 2
@@ -69,7 +68,7 @@ class Pokemon():
                if self.half_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 0.5
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.half_damage_from)):
                     if self.half_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 0.5
@@ -78,7 +77,7 @@ class Pokemon():
                if self.half_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 0.5
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.half_damage_to)):
                     if self.half_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 0.5
@@ -87,7 +86,7 @@ class Pokemon():
                if self.no_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 0
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.no_damage_from)):
                     if self.no_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 0
@@ -96,7 +95,7 @@ class Pokemon():
                if self.no_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 0
 
-          if self.types2 != "" or poke2.types2 != "":
+          if poke2.types2 != "":
                for i in range(len(self.no_damage_to)):
                     if self.no_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 0
@@ -105,15 +104,17 @@ class Pokemon():
           self.take_dam = max(self.take_dam1, self.take_dam2)
 
 
-poke2 = Pokemon("mewtwo")
+poke2 = Pokemon("ivysaur")
 poke1 = Pokemon("bulbasaur")
 print(poke1.getMultiplier(poke2))
 print(poke1.take_dam1)
 print(poke1.take_dam2)
+print(poke1.take_dam)
 print(poke1.deal_dam1)
 print(poke1.deal_dam2)
+print(poke1.deal_dam)
 print(poke1.types1)
-#print(poke1.response_dict1["damage_relations"])
+print(poke1.response_dict1["damage_relations"])
 
 #print(poke1.andmed)
 #double_damage_from
