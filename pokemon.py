@@ -116,6 +116,7 @@ print(poke1.deal_dam)
 print(poke1.types1)
 print(poke1.response_dict1["damage_relations"])
 
+
 #print(poke1.andmed)
 #double_damage_from
 #double_damage_to
