@@ -49,59 +49,71 @@ class Pokemon():
           for i in range(len(self.double_damage_from)):
                if self.double_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 2
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.double_damage_from)):
                     if self.double_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 2
+                         break
 
           for i in range(len(self.double_damage_to)):
                if self.double_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 2
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.double_damage_to)):
                     if self.double_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 2
+                         break
 
           for i in range(len(self.half_damage_from)):
                if self.half_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 0.5
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.half_damage_from)):
                     if self.half_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 0.5
+                         break
 
           for i in range(len(self.half_damage_to)):
                if self.half_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 0.5
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.half_damage_to)):
                     if self.half_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 0.5
+                         break
 
           for i in range(len(self.no_damage_from)):
                if self.no_damage_from[i]["name"] == poke2.types1["name"]:
                     self.take_dam1 = 0
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.no_damage_from)):
                     if self.no_damage_from[i]["name"] == poke2.types2["name"]:
                          self.take_dam2 = 0
+                         break
 
           for i in range(len(self.no_damage_to)):
                if self.no_damage_to[i]["name"] == poke2.types1["name"]:
                     self.deal_dam1 = 0
+                    break
 
           if poke2.types2 != "":
                for i in range(len(self.no_damage_to)):
                     if self.no_damage_to[i]["name"] == poke2.types2["name"]:
                          self.deal_dam2 = 0
+                         break
 
           self.deal_dam = max(self.deal_dam1, self.deal_dam2)
-          self.take_dam =self.take_dam1 * self.take_dam2
+          self.take_dam = max(self.take_dam1, self.take_dam2)
      def getStats(self):
           stats = self.response_dict["stats"]
           self.hp = stats[0]["base_stat"]
@@ -127,21 +139,47 @@ class Pokemon():
 
 
 
-poke2 = Pokemon("ivysaur")
-poke1 = Pokemon("bulbasaur")
+poke1 = Pokemon("charizard")
+poke2 = Pokemon("bulbasaur")
 poke1.getMultiplier(poke2)
+poke2.getMultiplier(poke1)
 poke1.getStats()
 poke2.getStats()
-print("Deal Dam")
-print(poke1.deal_dam1)
-print(poke1.deal_dam2)
-print(poke1.deal_dam)
-print("Take dam")
-print(poke1.take_dam1)
-print(poke1.take_dam2)
-print(poke1.take_dam)
+turn = 1
 print(poke1.response_dict["stats"])
 print(poke2.response_dict["stats"])
+if poke1.speeeeeeed >= poke2.speeeeeeed:
+     sp_atk1 = 0
+     sp_atk2 = 0
+     sp_def1 = 0
+     sp_def2 = 0
+     while poke1.hp > 0 and poke2.hp > 0 and turn <= 100:
+          atk1 = poke1.getPowah(poke2,sp_atk1,sp_def2)
+          poke2.hp -= atk1
+          sp_atk1 += 1
+          sp_def2 += 1
+          print(poke2.hp)
+          atk2 = poke2.getPowah(poke1, sp_atk2, sp_def1)
+          poke1.hp -= atk2
+          sp_atk2 += 1
+          sp_def1 += 1
+          print(poke1.hp)
+elif poke1.speeeeeeed < poke2.speeeeeeed:
+     sp_atk1 = 0
+     sp_atk2 = 0
+     sp_def1 = 0
+     sp_def2 = 0
+     while poke1.hp > 0 and poke2.hp > 0 and turn <= 100:
+          atk2 = poke2.getPowah(poke1, sp_atk2, sp_def1)
+          poke1.hp -= atk2
+          sp_atk2 += 1
+          sp_def1 += 1
+          print(poke1.hp)
+          atk1 = poke1.getPowah(poke2, sp_atk1, sp_def2)
+          poke2.hp -= atk1
+          sp_atk1 += 1
+          sp_def2 += 1
+          print(poke2.hp)
 
 
 #print(poke1.andmed)
