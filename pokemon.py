@@ -181,11 +181,3 @@ elif poke1.speeeeeeed < poke2.speeeeeeed:
           sp_def2 += 1
           print(poke2.hp)
 
-
-#print(poke1.andmed)
-#double_damage_from
-#double_damage_to
-#half_damage_from
-#half_damage_to
-#no_damage_from
-#no_damage_to
