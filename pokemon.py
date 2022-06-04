@@ -110,7 +110,22 @@ class Pokemon():
           self.sp_atk = stats[3]["base_stat"]
           self.sp_de = stats[4]["base_stat"]
           self.speeeeeeed = stats[5]["base_stat"]
-     def getPowah
+     def getPowah(self, poke2, atk_count, def_count):
+          if atk_count % 3:
+               atk = self.sp_atk
+          else:
+               atk = self.atk
+          if def_count % 2:
+               defe = poke2.sp_de
+          else:
+               defe = poke2.de
+          power = atk * self.deal_dam - defe
+          return power
+
+
+
+
+
 
 poke2 = Pokemon("ivysaur")
 poke1 = Pokemon("bulbasaur")
