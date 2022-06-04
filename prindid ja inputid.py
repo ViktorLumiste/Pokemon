@@ -79,3 +79,4 @@ elif poke1.speeeeeeed < poke2.speeeeeeed:
                print(input_name1, "kaotas selle võitluse")
                break
           print(input_name1 + "l jäi ", poke1.hp, "hp")
+
