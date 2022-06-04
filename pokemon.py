@@ -110,7 +110,7 @@ class Pokemon():
           self.sp_atk = stats[3]["base_stat"]
           self.sp_de = stats[4]["base_stat"]
           self.speeeeeeed = stats[5]["base_stat"]
-
+     def getPowah
 
 poke2 = Pokemon("ivysaur")
 poke1 = Pokemon("bulbasaur")
