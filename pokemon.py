@@ -101,20 +101,32 @@ class Pokemon():
                          self.deal_dam2 = 0
 
           self.deal_dam = max(self.deal_dam1, self.deal_dam2)
-          self.take_dam = max(self.take_dam1, self.take_dam2)
+          self.take_dam =self.take_dam1 * self.take_dam2
+     def getStats(self):
+          stats = self.response_dict["stats"]
+          self.hp = stats[0]["base_stat"]
+          self.atk = stats[1]["base_stat"]
+          self.de = stats[2]["base_stat"]
+          self.sp_atk = stats[3]["base_stat"]
+          self.sp_de = stats[4]["base_stat"]
+          self.speeeeeeed = stats[5]["base_stat"]
 
 
 poke2 = Pokemon("ivysaur")
 poke1 = Pokemon("bulbasaur")
-print(poke1.getMultiplier(poke2))
-print(poke1.take_dam1)
-print(poke1.take_dam2)
-print(poke1.take_dam)
+poke1.getMultiplier(poke2)
+poke1.getStats()
+poke2.getStats()
+print("Deal Dam")
 print(poke1.deal_dam1)
 print(poke1.deal_dam2)
 print(poke1.deal_dam)
-print(poke1.types1)
-print(poke1.response_dict1["damage_relations"])
+print("Take dam")
+print(poke1.take_dam1)
+print(poke1.take_dam2)
+print(poke1.take_dam)
+print(poke1.response_dict["stats"])
+print(poke2.response_dict["stats"])
 
 
 #print(poke1.andmed)
