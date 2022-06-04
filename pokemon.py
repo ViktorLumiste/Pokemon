@@ -139,46 +139,5 @@ class Pokemon():
 
 
 
-poke1 = Pokemon("charizard")
-poke2 = Pokemon("bulbasaur")
-poke1.getMultiplier(poke2)
-poke2.getMultiplier(poke1)
-poke1.getStats()
-poke2.getStats()
-turn = 1
-print(poke1.response_dict["stats"])
-print(poke2.response_dict["stats"])
-if poke1.speeeeeeed >= poke2.speeeeeeed:
-     sp_atk1 = 0
-     sp_atk2 = 0
-     sp_def1 = 0
-     sp_def2 = 0
-     while poke1.hp > 0 and poke2.hp > 0 and turn <= 100:
-          atk1 = poke1.getPowah(poke2,sp_atk1,sp_def2)
-          poke2.hp -= atk1
-          sp_atk1 += 1
-          sp_def2 += 1
-          print(poke2.hp)
-          atk2 = poke2.getPowah(poke1, sp_atk2, sp_def1)
-          poke1.hp -= atk2
-          sp_atk2 += 1
-          sp_def1 += 1
-          print(poke1.hp)
-elif poke1.speeeeeeed < poke2.speeeeeeed:
-     sp_atk1 = 0
-     sp_atk2 = 0
-     sp_def1 = 0
-     sp_def2 = 0
-     while poke1.hp > 0 and poke2.hp > 0 and turn <= 100:
-          atk2 = poke2.getPowah(poke1, sp_atk2, sp_def1)
-          poke1.hp -= atk2
-          sp_atk2 += 1
-          sp_def1 += 1
-          print(poke1.hp)
-          atk1 = poke1.getPowah(poke2, sp_atk1, sp_def2)
-          poke2.hp -= atk1
-          sp_atk1 += 1
-          sp_def2 += 1
-          print(poke2.hp)
 
 
