@@ -181,3 +181,4 @@ elif poke1.speeeeeeed < poke2.speeeeeeed:
           sp_def2 += 1
           print(poke2.hp)
 
+
